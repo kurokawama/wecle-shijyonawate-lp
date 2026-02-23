@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00A5A8">
   <title>WECLE（ウィークル）四條畷店 | 24時間セルフストレッチ×ピラティス</title>
   <meta name="description" content="WECLE四條畷店オープン！1回30分・24時間通い放題のストレッチ×マシンピラティス専門スタジオ。月額7,700円〜。今なら入会金0円＆初月半額キャンペーン実施中。">
   <meta name="keywords" content="WECLE,ウィークル,四條畷,ストレッチ,ピラティス,マシンピラティス,24時間,セルフ,通い放題">
@@ -19,6 +20,9 @@
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>W</text></svg>">
+
+  <!-- Preload critical fonts -->
+  <link rel="preload" href="https://fonts.gstatic.com/s/notosansjp/v53/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFJEk757Y0rw_qMHVdbR2L8Y9QTJ1LwkRmR5GprQAe-T3.0.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,89 +72,89 @@
   <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
 
   <!-- Section 0: Fixed Header -->
-  <header class="header" id="header" role="banner">
+  <header class="header" id="header">
     <div class="header__inner">
-      <a href="#" class="header__logo" aria-label="WECLE 四條畷店 トップページ">
+      <a href="#hero" class="header__logo" aria-label="WECLE 四條畷店 トップページへ戻る">
         <span class="header__logo-text">WECLE</span>
         <span class="header__logo-sub">四條畷店</span>
       </a>
-      <nav class="header__nav" id="header-nav" role="navigation" aria-label="メインナビゲーション">
-        <ul class="header__nav-list">
-          <li><a href="#features" class="header__nav-link">特徴</a></li>
-          <li><a href="#pricing" class="header__nav-link">料金</a></li>
-          <li><a href="#flow" class="header__nav-link">利用の流れ</a></li>
-          <li><a href="#access" class="header__nav-link">アクセス</a></li>
-          <li><a href="#faq" class="header__nav-link">FAQ</a></li>
+      <nav class="header__nav" id="header-nav" aria-label="メインナビゲーション">
+        <ul class="header__nav-list" role="list">
+          <li role="listitem"><a href="#features" class="header__nav-link">特徴</a></li>
+          <li role="listitem"><a href="#pricing" class="header__nav-link">料金</a></li>
+          <li role="listitem"><a href="#flow" class="header__nav-link">利用の流れ</a></li>
+          <li role="listitem"><a href="#access" class="header__nav-link">アクセス</a></li>
+          <li role="listitem"><a href="#faq" class="header__nav-link">FAQ</a></li>
         </ul>
       </nav>
-      <a href="#campaign" class="header__cta-btn">体験予約</a>
-      <button class="header__hamburger" id="hamburger-btn" aria-label="メニューを開く" aria-expanded="false" aria-controls="header-nav">
-        <span class="header__hamburger-line"></span>
-        <span class="header__hamburger-line"></span>
-        <span class="header__hamburger-line"></span>
+      <a href="#campaign" class="header__cta-btn" aria-label="無料体験を予約する">体験予約</a>
+      <button class="header__hamburger" id="hamburger-btn" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="header-nav" aria-haspopup="true">
+        <span class="header__hamburger-line" aria-hidden="true"></span>
+        <span class="header__hamburger-line" aria-hidden="true"></span>
+        <span class="header__hamburger-line" aria-hidden="true"></span>
       </button>
     </div>
   </header>
 
   <main id="main-content">
     <!-- Section 1: Hero / First View -->
-    <section class="hero" id="hero">
-      <div class="hero__bg">
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero__bg" role="img" aria-label="スタジオ内装の画像">
         <div class="hero__placeholder-img" aria-hidden="true">
           <span>Hero Image</span>
           <small>Studio Interior Photo</small>
         </div>
       </div>
       <div class="hero__content">
-        <p class="hero__badge">四條畷 NEW OPEN</p>
-        <h1 class="hero__title">
+        <p class="hero__badge" role="status">四條畷 NEW OPEN</p>
+        <h1 class="hero__title" id="hero-title">
           <span class="hero__title-line">1回30分で</span>
           <span class="hero__title-line hero__title-line--accent">カラダが変わる。</span>
         </h1>
-        <p class="hero__subtitle">24時間通い放題<br>セルフストレッチ×マシンピラティス</p>
-        <div class="hero__campaign-box">
+        <p class="hero__subtitle">24時間通い放題<br aria-hidden="true">セルフストレッチ×マシンピラティス</p>
+        <div class="hero__campaign-box" role="complementary" aria-label="キャンペーン情報">
           <p class="hero__campaign-label">オープン記念キャンペーン</p>
           <p class="hero__campaign-text"><strong>入会金0円</strong> ＋ <strong>初月会費半額</strong></p>
         </div>
-        <div class="hero__cta-group">
-          <a href="#campaign" class="btn btn--primary btn--pulse" data-gtm="cta_hero_reserve">
-            <span class="btn__icon">📅</span>
+        <div class="hero__cta-group" role="group" aria-label="お問い合わせ方法">
+          <a href="#campaign" class="btn btn--primary btn--pulse" data-gtm="cta_hero_reserve" aria-describedby="hero-note">
+            <span class="btn__icon" aria-hidden="true">📅</span>
             無料体験を予約する
           </a>
-          <a href="tel:0120-XXX-XXX" class="btn btn--secondary" data-gtm="cta_hero_tel">
-            <span class="btn__icon">📞</span>
+          <a href="tel:0120-XXX-XXX" class="btn btn--secondary" data-gtm="cta_hero_tel" aria-label="電話で問い合わせ 0120-XXX-XXX">
+            <span class="btn__icon" aria-hidden="true">📞</span>
             電話で問い合わせ
           </a>
         </div>
-        <p class="hero__note">※ 体験は完全無料・手ぶらOK</p>
+        <p class="hero__note" id="hero-note">※ 体験は完全無料・手ぶらOK</p>
       </div>
     </section>
 
     <!-- Section 2: Pain Points / Empathy -->
-    <section class="pain" id="pain">
+    <section class="pain" id="pain" aria-labelledby="pain-title">
       <div class="container">
-        <h2 class="section-title">
-          こんなお悩み<br class="sp-only">ありませんか？
+        <h2 class="section-title" id="pain-title">
+          こんなお悩み<br class="sp-only" aria-hidden="true">ありませんか？
         </h2>
-        <ul class="pain__list">
-          <li class="pain__item">
+        <ul class="pain__list" role="list">
+          <li class="pain__item" role="listitem">
             <span class="pain__icon" aria-hidden="true">😰</span>
-            <p class="pain__text">肩こり・腰痛がつらいけど<br>何をすればいいかわからない</p>
+            <p class="pain__text">肩こり・腰痛がつらいけど<br aria-hidden="true">何をすればいいかわからない</p>
           </li>
-          <li class="pain__item">
+          <li class="pain__item" role="listitem">
             <span class="pain__icon" aria-hidden="true">⏰</span>
-            <p class="pain__text">仕事が忙しくて<br>決まった時間に通えない</p>
+            <p class="pain__text">仕事が忙しくて<br aria-hidden="true">決まった時間に通えない</p>
           </li>
-          <li class="pain__item">
+          <li class="pain__item" role="listitem">
             <span class="pain__icon" aria-hidden="true">💸</span>
-            <p class="pain__text">ジムやピラティスは<br>料金が高くて続かない</p>
+            <p class="pain__text">ジムやピラティスは<br aria-hidden="true">料金が高くて続かない</p>
           </li>
-          <li class="pain__item">
+          <li class="pain__item" role="listitem">
             <span class="pain__icon" aria-hidden="true">😓</span>
-            <p class="pain__text">運動が苦手で<br>グループレッスンは気が引ける</p>
+            <p class="pain__text">運動が苦手で<br aria-hidden="true">グループレッスンは気が引ける</p>
           </li>
         </ul>
-        <div class="pain__answer">
+        <div class="pain__answer" role="note">
           <p class="pain__answer-text">
             そのお悩み、<strong>WECLE</strong>がすべて解決します。
           </p>
@@ -159,248 +163,249 @@
     </section>
 
     <!-- Section 3: Three Freedoms (Features) -->
-    <section class="features" id="features">
+    <section class="features" id="features" aria-labelledby="features-title">
       <div class="container">
-        <h2 class="section-title">
-          WECLEが選ばれる<br class="sp-only"><span class="text-accent">3つの自由</span>
+        <h2 class="section-title" id="features-title">
+          WECLEが選ばれる<br class="sp-only" aria-hidden="true"><span class="text-accent">3つの自由</span>
         </h2>
-        <div class="features__grid">
+        <div class="features__grid" role="list">
           <!-- Freedom 1: Time -->
-          <div class="features__card">
+          <article class="features__card" role="listitem">
             <div class="features__card-img">
-              <div class="placeholder-img placeholder-img--feature" aria-hidden="true">
-                <span>24H Studio</span>
+              <div class="placeholder-img placeholder-img--feature" role="img" aria-label="24時間営業のスタジオイメージ">
+                <span aria-hidden="true">24H Studio</span>
               </div>
             </div>
-            <div class="features__card-badge">自由 01</div>
+            <span class="features__card-badge" aria-hidden="true">自由 01</span>
             <h3 class="features__card-title">時間の自由</h3>
             <p class="features__card-subtitle">24時間いつでも通える</p>
             <p class="features__card-text">
               早朝5時でも深夜23時でも、あなたのライフスタイルに合わせて通えます。予約不要なので、思い立ったらすぐスタジオへ。
             </p>
-          </div>
+          </article>
 
           <!-- Freedom 2: Pace -->
-          <div class="features__card">
+          <article class="features__card" role="listitem">
             <div class="features__card-img">
-              <div class="placeholder-img placeholder-img--feature" aria-hidden="true">
-                <span>Self Stretch</span>
+              <div class="placeholder-img placeholder-img--feature" role="img" aria-label="セルフストレッチのイメージ">
+                <span aria-hidden="true">Self Stretch</span>
               </div>
             </div>
-            <div class="features__card-badge">自由 02</div>
+            <span class="features__card-badge" aria-hidden="true">自由 02</span>
             <h3 class="features__card-title">ペースの自由</h3>
             <p class="features__card-subtitle">1回30分のセルフスタイル</p>
             <p class="features__card-text">
               動画ガイドに沿って自分のペースで進められます。人目を気にせず、マイペースにストレッチ＆ピラティス。
             </p>
-          </div>
+          </article>
 
           <!-- Freedom 3: Cost -->
-          <div class="features__card">
+          <article class="features__card" role="listitem">
             <div class="features__card-img">
-              <div class="placeholder-img placeholder-img--feature" aria-hidden="true">
-                <span>Affordable</span>
+              <div class="placeholder-img placeholder-img--feature" role="img" aria-label="お手頃価格のイメージ">
+                <span aria-hidden="true">Affordable</span>
               </div>
             </div>
-            <div class="features__card-badge">自由 03</div>
+            <span class="features__card-badge" aria-hidden="true">自由 03</span>
             <h3 class="features__card-title">お財布の自由</h3>
             <p class="features__card-subtitle">月額7,700円〜通い放題</p>
             <p class="features__card-text">
               一般的なピラティススタジオの1回分以下の月額で、毎日通い放題。続けやすい価格で、理想のカラダへ。
             </p>
-          </div>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- Section 3.5: Comparison Table -->
-    <section class="comparison" id="comparison">
+    <section class="comparison" id="comparison" aria-labelledby="comparison-title">
       <div class="container">
-        <h2 class="section-title">他サービスとの比較</h2>
-        <div class="comparison__table-wrapper">
-          <table class="comparison__table" role="table">
+        <h2 class="section-title" id="comparison-title">他サービスとの比較</h2>
+        <div class="comparison__table-wrapper" role="region" aria-label="比較表" tabindex="0">
+          <table class="comparison__table" aria-describedby="comparison-note">
+            <caption class="visually-hidden">WECLEと他サービスの比較表</caption>
             <thead>
               <tr>
                 <th class="comparison__th comparison__th--sticky" scope="col">項目</th>
                 <th class="comparison__th comparison__th--highlight" scope="col">
                   <span class="comparison__brand">WECLE</span>
                 </th>
-                <th class="comparison__th" scope="col">一般的な<br>ピラティススタジオ</th>
-                <th class="comparison__th" scope="col">24時間<br>フィットネスジム</th>
-                <th class="comparison__th" scope="col">パーソナル<br>ジム</th>
+                <th class="comparison__th" scope="col">一般的な<br aria-hidden="true">ピラティススタジオ</th>
+                <th class="comparison__th" scope="col">24時間<br aria-hidden="true">フィットネスジム</th>
+                <th class="comparison__th" scope="col">パーソナル<br aria-hidden="true">ジム</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="comparison__td comparison__td--sticky">月額料金</td>
+                <th class="comparison__td comparison__td--sticky" scope="row">月額料金</th>
                 <td class="comparison__td comparison__td--highlight"><strong>7,700円〜</strong></td>
                 <td class="comparison__td">10,000〜20,000円</td>
                 <td class="comparison__td">7,000〜10,000円</td>
                 <td class="comparison__td">30,000〜80,000円</td>
               </tr>
               <tr>
-                <td class="comparison__td comparison__td--sticky">営業時間</td>
+                <th class="comparison__td comparison__td--sticky" scope="row">営業時間</th>
                 <td class="comparison__td comparison__td--highlight"><strong>24時間</strong></td>
                 <td class="comparison__td">10:00〜21:00</td>
                 <td class="comparison__td">24時間</td>
                 <td class="comparison__td">10:00〜22:00</td>
               </tr>
               <tr>
-                <td class="comparison__td comparison__td--sticky">予約</td>
+                <th class="comparison__td comparison__td--sticky" scope="row">予約</th>
                 <td class="comparison__td comparison__td--highlight"><strong>不要</strong></td>
                 <td class="comparison__td">必要</td>
                 <td class="comparison__td">不要</td>
                 <td class="comparison__td">必要</td>
               </tr>
               <tr>
-                <td class="comparison__td comparison__td--sticky">1回の時間</td>
+                <th class="comparison__td comparison__td--sticky" scope="row">1回の時間</th>
                 <td class="comparison__td comparison__td--highlight"><strong>30分</strong></td>
                 <td class="comparison__td">60分</td>
                 <td class="comparison__td">自由</td>
                 <td class="comparison__td">60分</td>
               </tr>
               <tr>
-                <td class="comparison__td comparison__td--sticky">人目</td>
+                <th class="comparison__td comparison__td--sticky" scope="row">人目</th>
                 <td class="comparison__td comparison__td--highlight"><strong>セルフで安心</strong></td>
                 <td class="comparison__td">グループ</td>
                 <td class="comparison__td">大勢</td>
                 <td class="comparison__td">1対1</td>
               </tr>
               <tr>
-                <td class="comparison__td comparison__td--sticky">ストレッチ+ピラティス</td>
-                <td class="comparison__td comparison__td--highlight"><strong>◎ 両方</strong></td>
-                <td class="comparison__td">△ ピラティスのみ</td>
-                <td class="comparison__td">× なし</td>
-                <td class="comparison__td">△ トレーナー次第</td>
+                <th class="comparison__td comparison__td--sticky" scope="row">ストレッチ+ピラティス</th>
+                <td class="comparison__td comparison__td--highlight"><strong><span aria-label="優れている">◎</span> 両方</strong></td>
+                <td class="comparison__td"><span aria-label="やや不足">△</span> ピラティスのみ</td>
+                <td class="comparison__td"><span aria-label="なし">×</span> なし</td>
+                <td class="comparison__td"><span aria-label="やや不足">△</span> トレーナー次第</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="comparison__note">※ 一般的な価格帯・サービス内容の比較です。</p>
+        <p class="comparison__note" id="comparison-note">※ 一般的な価格帯・サービス内容の比較です。</p>
       </div>
     </section>
 
     <!-- Section 4: Flow (How to Use) -->
-    <section class="flow" id="flow">
+    <section class="flow" id="flow" aria-labelledby="flow-title">
       <div class="container">
-        <h2 class="section-title">ご利用の流れ</h2>
+        <h2 class="section-title" id="flow-title">ご利用の流れ</h2>
         <p class="section-subtitle">初めてでも安心。たった3ステップで始められます。</p>
-        <div class="flow__steps">
-          <div class="flow__step">
-            <div class="flow__step-number">01</div>
+        <ol class="flow__steps" role="list">
+          <li class="flow__step" role="listitem">
+            <span class="flow__step-number" aria-hidden="true">01</span>
             <div class="flow__step-img">
-              <div class="placeholder-img placeholder-img--step" aria-hidden="true">
-                <span>Reserve</span>
+              <div class="placeholder-img placeholder-img--step" role="img" aria-label="予約のイメージ">
+                <span aria-hidden="true">Reserve</span>
               </div>
             </div>
             <h3 class="flow__step-title">無料体験を予約</h3>
             <p class="flow__step-text">WEBまたはお電話で、ご希望の日時をお選びください。手ぶらでOK。</p>
-          </div>
-          <div class="flow__step-arrow" aria-hidden="true">→</div>
-          <div class="flow__step">
-            <div class="flow__step-number">02</div>
+          </li>
+          <li class="flow__step-arrow" aria-hidden="true" role="presentation">→</li>
+          <li class="flow__step" role="listitem">
+            <span class="flow__step-number" aria-hidden="true">02</span>
             <div class="flow__step-img">
-              <div class="placeholder-img placeholder-img--step" aria-hidden="true">
-                <span>Experience</span>
+              <div class="placeholder-img placeholder-img--step" role="img" aria-label="体験のイメージ">
+                <span aria-hidden="true">Experience</span>
               </div>
             </div>
             <h3 class="flow__step-title">スタジオで体験</h3>
             <p class="flow__step-text">スタッフが丁寧にご案内。動画ガイドに沿って30分のプログラムを体験。</p>
-          </div>
-          <div class="flow__step-arrow" aria-hidden="true">→</div>
-          <div class="flow__step">
-            <div class="flow__step-number">03</div>
+          </li>
+          <li class="flow__step-arrow" aria-hidden="true" role="presentation">→</li>
+          <li class="flow__step" role="listitem">
+            <span class="flow__step-number" aria-hidden="true">03</span>
             <div class="flow__step-img">
-              <div class="placeholder-img placeholder-img--step" aria-hidden="true">
-                <span>Start</span>
+              <div class="placeholder-img placeholder-img--step" role="img" aria-label="入会のイメージ">
+                <span aria-hidden="true">Start</span>
               </div>
             </div>
             <h3 class="flow__step-title">入会＆スタート</h3>
             <p class="flow__step-text">気に入ったらその場で入会OK。翌日から24時間いつでもご利用いただけます。</p>
-          </div>
-        </div>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- Section 5: Pricing -->
-    <section class="pricing" id="pricing">
+    <section class="pricing" id="pricing" aria-labelledby="pricing-title">
       <div class="container">
-        <h2 class="section-title">料金プラン</h2>
+        <h2 class="section-title" id="pricing-title">料金プラン</h2>
         <p class="section-subtitle">シンプルでわかりやすい料金体系</p>
-        <div class="pricing__grid">
-          <div class="pricing__card">
+        <div class="pricing__grid" role="list">
+          <article class="pricing__card" role="listitem" aria-labelledby="pricing-standard-title">
             <div class="pricing__card-header">
-              <h3 class="pricing__card-name">スタンダード</h3>
+              <h3 class="pricing__card-name" id="pricing-standard-title">スタンダード</h3>
               <p class="pricing__card-desc">全時間帯利用可能</p>
             </div>
-            <div class="pricing__card-price">
-              <span class="pricing__card-yen">¥</span>
-              <span class="pricing__card-amount">7,700</span>
-              <span class="pricing__card-unit">/月（税込）</span>
+            <div class="pricing__card-price" aria-label="月額7,700円（税込）">
+              <span class="pricing__card-yen" aria-hidden="true">¥</span>
+              <span class="pricing__card-amount" aria-hidden="true">7,700</span>
+              <span class="pricing__card-unit" aria-hidden="true">/月（税込）</span>
             </div>
-            <ul class="pricing__card-features">
-              <li>24時間利用OK</li>
-              <li>通い放題</li>
-              <li>全マシン利用可能</li>
-              <li>動画ガイド見放題</li>
+            <ul class="pricing__card-features" role="list" aria-label="プラン特典">
+              <li role="listitem">24時間利用OK</li>
+              <li role="listitem">通い放題</li>
+              <li role="listitem">全マシン利用可能</li>
+              <li role="listitem">動画ガイド見放題</li>
             </ul>
-            <a href="#campaign" class="btn btn--primary" data-gtm="cta_pricing_standard">このプランで体験</a>
-          </div>
-          <div class="pricing__card pricing__card--popular">
-            <div class="pricing__card-badge">人気No.1</div>
+            <a href="#campaign" class="btn btn--primary" data-gtm="cta_pricing_standard" aria-describedby="pricing-standard-title">このプランで体験</a>
+          </article>
+          <article class="pricing__card pricing__card--popular" role="listitem" aria-labelledby="pricing-premium-title">
+            <span class="pricing__card-badge" role="note">人気No.1</span>
             <div class="pricing__card-header">
-              <h3 class="pricing__card-name">プレミアム</h3>
+              <h3 class="pricing__card-name" id="pricing-premium-title">プレミアム</h3>
               <p class="pricing__card-desc">全時間帯+オプション付き</p>
             </div>
-            <div class="pricing__card-price">
-              <span class="pricing__card-yen">¥</span>
-              <span class="pricing__card-amount">9,900</span>
-              <span class="pricing__card-unit">/月（税込）</span>
+            <div class="pricing__card-price" aria-label="月額9,900円（税込）">
+              <span class="pricing__card-yen" aria-hidden="true">¥</span>
+              <span class="pricing__card-amount" aria-hidden="true">9,900</span>
+              <span class="pricing__card-unit" aria-hidden="true">/月（税込）</span>
             </div>
-            <ul class="pricing__card-features">
-              <li>スタンダード全特典</li>
-              <li>水素水飲み放題</li>
-              <li>契約ロッカー付き</li>
-              <li>他店舗利用可能</li>
+            <ul class="pricing__card-features" role="list" aria-label="プラン特典">
+              <li role="listitem">スタンダード全特典</li>
+              <li role="listitem">水素水飲み放題</li>
+              <li role="listitem">契約ロッカー付き</li>
+              <li role="listitem">他店舗利用可能</li>
             </ul>
-            <a href="#campaign" class="btn btn--primary" data-gtm="cta_pricing_premium">このプランで体験</a>
-          </div>
+            <a href="#campaign" class="btn btn--primary" data-gtm="cta_pricing_premium" aria-describedby="pricing-premium-title">このプランで体験</a>
+          </article>
         </div>
-        <div class="pricing__notes">
+        <aside class="pricing__notes" role="note" aria-label="注意事項">
           <p>※ 入会時に事務手数料 3,300円（税込）が必要です。</p>
           <p>※ 今ならオープンキャンペーンで入会金0円！</p>
-        </div>
+        </aside>
       </div>
     </section>
 
     <!-- Section 6: Campaign CTA -->
-    <section class="campaign" id="campaign">
+    <section class="campaign" id="campaign" aria-labelledby="campaign-title">
       <div class="container">
         <div class="campaign__box">
-          <p class="campaign__label">🎉 四條畷店オープン記念</p>
-          <h2 class="campaign__title">期間限定キャンペーン</h2>
-          <div class="campaign__benefits">
-            <div class="campaign__benefit">
+          <p class="campaign__label"><span aria-hidden="true">🎉</span> 四條畷店オープン記念</p>
+          <h2 class="campaign__title" id="campaign-title">期間限定キャンペーン</h2>
+          <div class="campaign__benefits" role="list" aria-label="キャンペーン特典">
+            <div class="campaign__benefit" role="listitem">
               <p class="campaign__benefit-label">特典 1</p>
-              <p class="campaign__benefit-value">入会金 <strong>0</strong>円</p>
+              <p class="campaign__benefit-value" aria-label="入会金0円">入会金 <strong>0</strong>円</p>
               <p class="campaign__benefit-note">通常 5,500円 → 無料</p>
             </div>
-            <div class="campaign__benefit">
+            <div class="campaign__benefit" role="listitem">
               <p class="campaign__benefit-label">特典 2</p>
-              <p class="campaign__benefit-value">初月会費 <strong>半額</strong></p>
+              <p class="campaign__benefit-value" aria-label="初月会費半額">初月会費 <strong>半額</strong></p>
               <p class="campaign__benefit-note">スタンダード 7,700円 → 3,850円</p>
             </div>
           </div>
-          <p class="campaign__deadline">
+          <p class="campaign__deadline" role="timer" aria-label="キャンペーン期限">
             <span class="campaign__deadline-icon" aria-hidden="true">⏰</span>
             <strong>2026年3月末日</strong>までの入会が対象
           </p>
-          <div class="campaign__cta-group">
+          <div class="campaign__cta-group" role="group" aria-label="お問い合わせ方法">
             <a href="#" class="btn btn--accent btn--large btn--pulse" data-gtm="cta_campaign_reserve">
               無料体験を予約する（かんたん60秒）
             </a>
-            <a href="tel:0120-XXX-XXX" class="btn btn--outline btn--large" data-gtm="cta_campaign_tel">
-              📞 0120-XXX-XXX（受付 10:00〜19:00）
+            <a href="tel:0120-XXX-XXX" class="btn btn--outline btn--large" data-gtm="cta_campaign_tel" aria-label="電話で問い合わせ 0120-XXX-XXX 受付時間10時から19時">
+              <span aria-hidden="true">📞</span> 0120-XXX-XXX（受付 10:00〜19:00）
             </a>
           </div>
         </div>
@@ -408,89 +413,98 @@
     </section>
 
     <!-- Section 7: Testimonials -->
-    <section class="testimonials" id="testimonials">
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonials-title">
       <div class="container">
-        <h2 class="section-title">お客様の声</h2>
-        <div class="testimonials__grid">
-          <div class="testimonials__card">
-            <div class="testimonials__card-header">
+        <h2 class="section-title" id="testimonials-title">お客様の声</h2>
+        <div class="testimonials__grid" role="list">
+          <article class="testimonials__card" role="listitem">
+            <header class="testimonials__card-header">
               <div class="testimonials__avatar" aria-hidden="true">A</div>
               <div>
                 <p class="testimonials__name">A.Tさん（30代女性）</p>
-                <div class="testimonials__stars" aria-label="評価5つ星">★★★★★</div>
+                <div class="testimonials__stars" role="img" aria-label="5つ星中5つ星の評価">★★★★★</div>
               </div>
-            </div>
-            <p class="testimonials__text">
-              仕事帰りの22時に通えるのが最高です。30分で終わるから、気軽に寄れます。肩こりがずいぶんラクになりました！
-            </p>
-          </div>
-          <div class="testimonials__card">
-            <div class="testimonials__card-header">
+            </header>
+            <blockquote class="testimonials__text">
+              <p>仕事帰りの22時に通えるのが最高です。30分で終わるから、気軽に寄れます。肩こりがずいぶんラクになりました！</p>
+            </blockquote>
+          </article>
+          <article class="testimonials__card" role="listitem">
+            <header class="testimonials__card-header">
               <div class="testimonials__avatar" aria-hidden="true">K</div>
               <div>
                 <p class="testimonials__name">K.Mさん（40代男性）</p>
-                <div class="testimonials__stars" aria-label="評価5つ星">★★★★★</div>
+                <div class="testimonials__stars" role="img" aria-label="5つ星中5つ星の評価">★★★★★</div>
               </div>
-            </div>
-            <p class="testimonials__text">
-              人目を気にせずできるのがいい。運動嫌いな自分でも、動画に沿ってやるだけなので続けられています。
-            </p>
-          </div>
-          <div class="testimonials__card">
-            <div class="testimonials__card-header">
+            </header>
+            <blockquote class="testimonials__text">
+              <p>人目を気にせずできるのがいい。運動嫌いな自分でも、動画に沿ってやるだけなので続けられています。</p>
+            </blockquote>
+          </article>
+          <article class="testimonials__card" role="listitem">
+            <header class="testimonials__card-header">
               <div class="testimonials__avatar" aria-hidden="true">S</div>
               <div>
                 <p class="testimonials__name">S.Yさん（50代女性）</p>
-                <div class="testimonials__stars" aria-label="評価4つ星">★★★★☆</div>
+                <div class="testimonials__stars" role="img" aria-label="5つ星中4つ星の評価">★★★★☆</div>
               </div>
-            </div>
-            <p class="testimonials__text">
-              この価格で通い放題は本当にありがたい。ピラティスのスタジオは月2万近くするので、半額以下で毎日通えるのは嬉しいです。
-            </p>
-          </div>
+            </header>
+            <blockquote class="testimonials__text">
+              <p>この価格で通い放題は本当にありがたい。ピラティスのスタジオは月2万近くするので、半額以下で毎日通えるのは嬉しいです。</p>
+            </blockquote>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- Section 8: Studio Info & Access -->
-    <section class="access" id="access">
+    <section class="access" id="access" aria-labelledby="access-title">
       <div class="container">
-        <h2 class="section-title">スタジオ情報・アクセス</h2>
+        <h2 class="section-title" id="access-title">スタジオ情報・アクセス</h2>
         <div class="access__grid">
           <div class="access__info">
-            <table class="access__table">
+            <table class="access__table" aria-label="店舗情報">
               <tbody>
                 <tr>
-                  <th>店舗名</th>
+                  <th scope="row">店舗名</th>
                   <td>WECLE 四條畷店</td>
                 </tr>
                 <tr>
-                  <th>住所</th>
-                  <td>〒575-0001<br>大阪府四條畷市砂四丁目XX-XX<br>イオンモール四條畷 1F</td>
+                  <th scope="row">住所</th>
+                  <td>
+                    <address>
+                      〒575-0001<br aria-hidden="true">
+                      大阪府四條畷市砂四丁目XX-XX<br aria-hidden="true">
+                      イオンモール四條畷 1F
+                    </address>
+                  </td>
                 </tr>
                 <tr>
-                  <th>電話番号</th>
-                  <td><a href="tel:0120-XXX-XXX">0120-XXX-XXX</a></td>
+                  <th scope="row">電話番号</th>
+                  <td><a href="tel:0120-XXX-XXX" aria-label="電話番号 0120-XXX-XXX">0120-XXX-XXX</a></td>
                 </tr>
                 <tr>
-                  <th>営業時間</th>
-                  <td>24時間（年中無休）<br><small>※ スタッフ対応時間: 10:00〜19:00</small></td>
+                  <th scope="row">営業時間</th>
+                  <td>
+                    <time>24時間（年中無休）</time><br aria-hidden="true">
+                    <small>※ スタッフ対応時間: 10:00〜19:00</small>
+                  </td>
                 </tr>
                 <tr>
-                  <th>アクセス</th>
-                  <td>JR学研都市線「四条畷駅」よりバス10分<br>イオンモール四條畷内 1F</td>
+                  <th scope="row">アクセス</th>
+                  <td>JR学研都市線「四条畷駅」よりバス10分<br aria-hidden="true">イオンモール四條畷内 1F</td>
                 </tr>
                 <tr>
-                  <th>駐車場</th>
+                  <th scope="row">駐車場</th>
                   <td>イオンモール駐車場 無料利用可</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="access__map">
-            <div class="placeholder-img placeholder-img--map" aria-label="Google Map: WECLE四條畷店の地図">
-              <span>Google Map</span>
-              <small>イオンモール四條畷 1F</small>
+            <div class="placeholder-img placeholder-img--map" role="img" aria-label="WECLE四條畷店の地図（イオンモール四條畷1階）">
+              <span aria-hidden="true">Google Map</span>
+              <small aria-hidden="true">イオンモール四條畷 1F</small>
             </div>
           </div>
         </div>
@@ -498,67 +512,79 @@
     </section>
 
     <!-- Section 9: FAQ -->
-    <section class="faq" id="faq">
+    <section class="faq" id="faq" aria-labelledby="faq-title">
       <div class="container">
-        <h2 class="section-title">よくあるご質問</h2>
-        <div class="faq__list" role="list">
-          <div class="faq__item" role="listitem">
-            <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-1" data-gtm="faq_open">
-              <span class="faq__q-icon" aria-hidden="true">Q</span>
-              <span class="faq__q-text">運動経験がなくても大丈夫ですか？</span>
-              <span class="faq__toggle" aria-hidden="true"></span>
-            </button>
-            <div class="faq__answer" id="faq-answer-1" role="region" hidden>
+        <h2 class="section-title" id="faq-title">よくあるご質問</h2>
+        <div class="faq__list" role="group" aria-label="よくある質問一覧">
+          <div class="faq__item">
+            <h3>
+              <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-1" data-gtm="faq_open" id="faq-btn-1">
+                <span class="faq__q-icon" aria-hidden="true">Q</span>
+                <span class="faq__q-text">運動経験がなくても大丈夫ですか？</span>
+                <span class="faq__toggle" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq__answer" id="faq-answer-1" role="region" aria-labelledby="faq-btn-1" hidden>
               <p>はい、まったく問題ありません。WECLEのプログラムは動画ガイドに沿って行うので、運動未経験の方でも安心して始められます。無理のない範囲で自分のペースで進められます。</p>
             </div>
           </div>
-          <div class="faq__item" role="listitem">
-            <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-2" data-gtm="faq_open">
-              <span class="faq__q-icon" aria-hidden="true">Q</span>
-              <span class="faq__q-text">予約は必要ですか？</span>
-              <span class="faq__toggle" aria-hidden="true"></span>
-            </button>
-            <div class="faq__answer" id="faq-answer-2" role="region" hidden>
+          <div class="faq__item">
+            <h3>
+              <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-2" data-gtm="faq_open" id="faq-btn-2">
+                <span class="faq__q-icon" aria-hidden="true">Q</span>
+                <span class="faq__q-text">予約は必要ですか？</span>
+                <span class="faq__toggle" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq__answer" id="faq-answer-2" role="region" aria-labelledby="faq-btn-2" hidden>
               <p>通常のご利用に予約は不要です。24時間いつでもお越しいただけます。初回の無料体験のみ、WEBまたはお電話にてご予約をお願いしております。</p>
             </div>
           </div>
-          <div class="faq__item" role="listitem">
-            <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-3" data-gtm="faq_open">
-              <span class="faq__q-icon" aria-hidden="true">Q</span>
-              <span class="faq__q-text">体験当日の持ち物は？</span>
-              <span class="faq__toggle" aria-hidden="true"></span>
-            </button>
-            <div class="faq__answer" id="faq-answer-3" role="region" hidden>
+          <div class="faq__item">
+            <h3>
+              <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-3" data-gtm="faq_open" id="faq-btn-3">
+                <span class="faq__q-icon" aria-hidden="true">Q</span>
+                <span class="faq__q-text">体験当日の持ち物は？</span>
+                <span class="faq__toggle" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq__answer" id="faq-answer-3" role="region" aria-labelledby="faq-btn-3" hidden>
               <p>手ぶらでお越しいただけます。ウェアの貸し出し（無料）、お水のご用意がありますので、お気軽にどうぞ。靴は不要です（裸足または靴下で行います）。</p>
             </div>
           </div>
-          <div class="faq__item" role="listitem">
-            <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-4" data-gtm="faq_open">
-              <span class="faq__q-icon" aria-hidden="true">Q</span>
-              <span class="faq__q-text">どのくらいで効果を感じられますか？</span>
-              <span class="faq__toggle" aria-hidden="true"></span>
-            </button>
-            <div class="faq__answer" id="faq-answer-4" role="region" hidden>
+          <div class="faq__item">
+            <h3>
+              <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-4" data-gtm="faq_open" id="faq-btn-4">
+                <span class="faq__q-icon" aria-hidden="true">Q</span>
+                <span class="faq__q-text">どのくらいで効果を感じられますか？</span>
+                <span class="faq__toggle" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq__answer" id="faq-answer-4" role="region" aria-labelledby="faq-btn-4" hidden>
               <p>個人差はありますが、多くの方が初回で「体が軽くなった」と実感されています。週2〜3回の利用で、1ヶ月後には姿勢改善や柔軟性の向上を感じられる方がほとんどです。</p>
             </div>
           </div>
-          <div class="faq__item" role="listitem">
-            <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-5" data-gtm="faq_open">
-              <span class="faq__q-icon" aria-hidden="true">Q</span>
-              <span class="faq__q-text">解約はいつでもできますか？</span>
-              <span class="faq__toggle" aria-hidden="true"></span>
-            </button>
-            <div class="faq__answer" id="faq-answer-5" role="region" hidden>
+          <div class="faq__item">
+            <h3>
+              <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-5" data-gtm="faq_open" id="faq-btn-5">
+                <span class="faq__q-icon" aria-hidden="true">Q</span>
+                <span class="faq__q-text">解約はいつでもできますか？</span>
+                <span class="faq__toggle" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq__answer" id="faq-answer-5" role="region" aria-labelledby="faq-btn-5" hidden>
               <p>はい、いつでも解約可能です。解約届は店舗またはWEBにてお手続きいただけます。違約金等は一切ございません。</p>
             </div>
           </div>
-          <div class="faq__item" role="listitem">
-            <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-6" data-gtm="faq_open">
-              <span class="faq__q-icon" aria-hidden="true">Q</span>
-              <span class="faq__q-text">男性も利用できますか？</span>
-              <span class="faq__toggle" aria-hidden="true"></span>
-            </button>
-            <div class="faq__answer" id="faq-answer-6" role="region" hidden>
+          <div class="faq__item">
+            <h3>
+              <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-6" data-gtm="faq_open" id="faq-btn-6">
+                <span class="faq__q-icon" aria-hidden="true">Q</span>
+                <span class="faq__q-text">男性も利用できますか？</span>
+                <span class="faq__toggle" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq__answer" id="faq-answer-6" role="region" aria-labelledby="faq-btn-6" hidden>
               <p>もちろんです。WECLEは男女問わずどなたでもご利用いただけます。セルフスタイルなので、人目を気にせずトレーニングに集中できます。</p>
             </div>
           </div>
@@ -567,19 +593,19 @@
     </section>
 
     <!-- Section 10: Final CTA -->
-    <section class="final-cta" id="final-cta">
+    <section class="final-cta" id="final-cta" aria-labelledby="final-cta-title">
       <div class="container">
         <div class="final-cta__inner">
-          <h2 class="final-cta__title">
-            まずは<span class="text-accent">無料体験</span>で<br>カラダの変化を実感してください
+          <h2 class="final-cta__title" id="final-cta-title">
+            まずは<span class="text-accent">無料体験</span>で<br aria-hidden="true">カラダの変化を実感してください
           </h2>
           <p class="final-cta__subtitle">体験は完全無料。手ぶらでOK。無理な勧誘は一切ありません。</p>
-          <div class="final-cta__cta-group">
+          <div class="final-cta__cta-group" role="group" aria-label="お問い合わせ方法">
             <a href="#" class="btn btn--accent btn--large btn--pulse" data-gtm="cta_final_reserve">
               無料体験を予約する
             </a>
-            <a href="tel:0120-XXX-XXX" class="btn btn--outline-white btn--large" data-gtm="cta_final_tel">
-              📞 電話で問い合わせ
+            <a href="tel:0120-XXX-XXX" class="btn btn--outline-white btn--large" data-gtm="cta_final_tel" aria-label="電話で問い合わせ 0120-XXX-XXX">
+              <span aria-hidden="true">📞</span> 電話で問い合わせ
             </a>
           </div>
         </div>
@@ -588,43 +614,43 @@
   </main>
 
   <!-- Section 11: Footer -->
-  <footer class="footer" id="footer" role="contentinfo">
+  <footer class="footer" id="footer">
     <div class="container">
       <div class="footer__inner">
         <div class="footer__brand">
           <p class="footer__logo">WECLE <span>四條畷店</span></p>
-          <p class="footer__address">大阪府四條畷市砂四丁目XX-XX イオンモール四條畷 1F</p>
+          <address class="footer__address">大阪府四條畷市砂四丁目XX-XX イオンモール四條畷 1F</address>
         </div>
         <nav class="footer__nav" aria-label="フッターナビゲーション">
-          <ul class="footer__nav-list">
-            <li><a href="#features">特徴</a></li>
-            <li><a href="#pricing">料金</a></li>
-            <li><a href="#flow">利用の流れ</a></li>
-            <li><a href="#access">アクセス</a></li>
-            <li><a href="#faq">FAQ</a></li>
+          <ul class="footer__nav-list" role="list">
+            <li role="listitem"><a href="#features">特徴</a></li>
+            <li role="listitem"><a href="#pricing">料金</a></li>
+            <li role="listitem"><a href="#flow">利用の流れ</a></li>
+            <li role="listitem"><a href="#access">アクセス</a></li>
+            <li role="listitem"><a href="#faq">FAQ</a></li>
           </ul>
         </nav>
       </div>
       <div class="footer__bottom">
-        <p class="footer__copyright">&copy; 2026 WECLE 四條畷店. All rights reserved.</p>
-        <ul class="footer__legal">
-          <li><a href="#">プライバシーポリシー</a></li>
-          <li><a href="#">利用規約</a></li>
-          <li><a href="#">特定商取引法に基づく表記</a></li>
+        <p class="footer__copyright"><small>&copy; 2026 WECLE 四條畷店. All rights reserved.</small></p>
+        <ul class="footer__legal" role="list">
+          <li role="listitem"><a href="#">プライバシーポリシー</a></li>
+          <li role="listitem"><a href="#">利用規約</a></li>
+          <li role="listitem"><a href="#">特定商取引法に基づく表記</a></li>
         </ul>
       </div>
     </div>
   </footer>
 
   <!-- Mobile Fixed CTA Bar -->
-  <div class="mobile-cta" id="mobile-cta" aria-label="お問い合わせ">
-    <a href="#campaign" class="mobile-cta__btn mobile-cta__btn--reserve" data-gtm="cta_mobile_reserve">
-      <span>体験予約</span>
+  <aside class="mobile-cta" id="mobile-cta" role="complementary" aria-label="モバイルお問い合わせバー">
+    <a href="#campaign" class="mobile-cta__btn mobile-cta__btn--reserve" data-gtm="cta_mobile_reserve" aria-label="無料体験を予約する">
+      <span aria-hidden="true">体験予約</span>
     </a>
-    <a href="tel:0120-XXX-XXX" class="mobile-cta__btn mobile-cta__btn--tel" data-gtm="cta_mobile_tel">
-      <span>電話</span>
+    <a href="tel:0120-XXX-XXX" class="mobile-cta__btn mobile-cta__btn--tel" data-gtm="cta_mobile_tel" aria-label="電話で問い合わせ 0120-XXX-XXX">
+      <span aria-hidden="true">電話</span>
     </a>
-  </div>
+  </aside>
 
   <!-- JavaScript -->
   <script src="js/main.js" defer></script>
