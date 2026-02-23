@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "wecle-lp",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "C:/Users/m-kur/wecle-shijyonawate-lp", "-p", "8080", "-c-1"],
+      "port": 8080
+    }
+  ]
+}
