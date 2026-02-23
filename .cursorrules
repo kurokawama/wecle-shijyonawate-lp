@@ -1,0 +1,56 @@
+# WECLE LP - Cursor Rules
+
+## Project
+- WECLE 四條畷店 LP (Landing Page)
+- Static HTML/CSS/JS, no frameworks
+
+## Code Style
+- Use semantic HTML5 elements (section, nav, header, footer, main, article)
+- CSS: BEM-like naming (.section__element--modifier)
+- CSS: Mobile-first media queries (min-width)
+- CSS: Custom properties for all design tokens
+- JS: Vanilla ES6+, no jQuery
+- JS: Use addEventListener, not onclick attributes
+- All user-facing text in Japanese
+- Code comments in English
+
+## Design Tokens (CSS Variables)
+```css
+--color-primary: #00A5A8;
+--color-text: #1A2B3C;
+--color-bg: #F5F3F0;
+--color-accent: #FF6B35;
+--color-gold: #D4A843;
+--color-white: #FFFFFF;
+--font-family: 'Noto Sans JP', sans-serif;
+```
+
+## Responsive Breakpoints
+- Base: 375px (mobile-first)
+- Tablet: min-width: 768px
+- Desktop: min-width: 1024px
+- Wide: min-width: 1440px
+
+## Performance Rules
+- No render-blocking JS (defer attribute)
+- Optimize CSS (no unused selectors)
+- Use loading="lazy" for images below fold
+- Minimize DOM depth
+
+## Accessibility Rules
+- All images must have alt text
+- Interactive elements need focus styles
+- ARIA attributes on accordion, modal, navigation
+- Color contrast 4.5:1 minimum
+- Keyboard-navigable FAQ accordion
+
+## GTM/Analytics
+- Use dataLayer.push for events
+- Event categories: cta_click, faq_open, scroll_depth, phone_tap
+- Do NOT include actual GTM container ID (use placeholder GTM-XXXXXX)
+
+## File Scope
+- index.html: Structure only, no inline styles/scripts
+- css/style.css: All styles
+- js/main.js: All interactions
+- Do not create new files without approval
