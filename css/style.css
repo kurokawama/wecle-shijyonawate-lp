@@ -19,6 +19,7 @@
   --color-gold-light: #FDF6E8;
   --color-border: #E0DCD8;
   --color-shadow: rgba(26, 43, 60, 0.08);
+  --color-shadow-lg: rgba(26, 43, 60, 0.12);
 
   /* Typography */
   --font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -642,11 +643,12 @@ ul, ol {
   border-radius: var(--border-radius-lg);
   overflow: hidden;
   box-shadow: 0 4px 24px var(--color-shadow);
-  transition: transform var(--transition-base);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .features__card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 8px 32px var(--color-shadow-lg);
 }
 
 .features__card-img {
@@ -760,6 +762,12 @@ ul, ol {
   background: var(--color-primary-light);
   color: var(--color-primary-dark);
   font-weight: 700;
+  border-left: 2px solid var(--color-primary);
+  border-right: 2px solid var(--color-primary);
+}
+
+.comparison__td--highlight:last-of-type {
+  border-bottom: 2px solid var(--color-primary);
 }
 
 .comparison__note {
@@ -862,6 +870,7 @@ ul, ol {
 
 .pricing__card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 8px 32px var(--color-shadow-lg);
 }
 
 .pricing__card--popular {
@@ -1050,6 +1059,13 @@ ul, ol {
   border-radius: var(--border-radius-lg);
   padding: var(--space-xl);
   box-shadow: 0 4px 24px var(--color-shadow);
+  border-left: 4px solid var(--color-primary);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.testimonials__card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px var(--color-shadow-lg);
 }
 
 .testimonials__card-header {
