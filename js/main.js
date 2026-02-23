@@ -7,166 +7,360 @@
 (function () {
   'use strict';
 
+  // --- Error Handler Wrapper ---
+  function safeExecute(fn, context) {
+    return function () {
+      try {
+        return fn.apply(context || this, arguments);
+      } catch (error) {
+        if (typeof console !== 'undefined' && console.error) {
+          console.error('WECLE LP Error:', error);
+        }
+      }
+    };
+  }
+
+  // --- Feature Detection ---
+  var supportsPassive = false;
+  try {
+    var opts = Object.defineProperty({}, 'passive', {
+      get: function () {
+        supportsPassive = true;
+        return true;
+      },
+    });
+    window.addEventListener('testPassive', null, opts);
+    window.removeEventListener('testPassive', null, opts);
+  } catch (e) {
+    supportsPassive = false;
+  }
+
+  var passiveOption = supportsPassive ? { passive: true } : false;
+
   // --- DOM References ---
-  const header = document.getElementById('header');
-  const hamburgerBtn = document.getElementById('hamburger-btn');
-  const headerNav = document.getElementById('header-nav');
-  const mobileCta = document.getElementById('mobile-cta');
-  const heroSection = document.getElementById('hero');
-  const footerSection = document.getElementById('footer');
-  const faqButtons = document.querySelectorAll('.faq__question');
+  function getElements() {
+    return {
+      header: document.getElementById('header'),
+      hamburgerBtn: document.getElementById('hamburger-btn'),
+      headerNav: document.getElementById('header-nav'),
+      mobileCta: document.getElementById('mobile-cta'),
+      heroSection: document.getElementById('hero'),
+      footerSection: document.getElementById('footer'),
+      faqButtons: document.querySelectorAll('.faq__question'),
+      mainContent: document.getElementById('main-content'),
+    };
+  }
+
+  var elements = null;
 
   // --- GTM Helper ---
   function pushGTMEvent(eventName, params) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: eventName,
-      ...params,
-    });
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: eventName,
+        ...params,
+      });
+    } catch (error) {
+      if (typeof console !== 'undefined' && console.error) {
+        console.error('GTM push error:', error);
+      }
+    }
+  }
+
+  // --- Check Reduced Motion Preference ---
+  function prefersReducedMotion() {
+    return (
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    );
   }
 
   // --- Sticky Header ---
-  function handleStickyHeader() {
-    if (!header) return;
+  var handleStickyHeader = safeExecute(function () {
+    if (!elements || !elements.header) return;
 
-    const scrollY = window.scrollY || window.pageYOffset;
-    const threshold = 50;
+    var scrollY = window.scrollY || window.pageYOffset || 0;
+    var threshold = 50;
 
     if (scrollY > threshold) {
-      header.classList.add('header--scrolled');
+      elements.header.classList.add('header--scrolled');
     } else {
-      header.classList.remove('header--scrolled');
+      elements.header.classList.remove('header--scrolled');
     }
-  }
+  });
 
   // --- Mobile Fixed CTA ---
-  function handleMobileCta() {
-    if (!mobileCta || !heroSection) return;
+  var handleMobileCta = safeExecute(function () {
+    if (!elements || !elements.mobileCta || !elements.heroSection) return;
 
-    const scrollY = window.scrollY || window.pageYOffset;
-    const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-    const footerTop = footerSection ? footerSection.offsetTop : documentHeight;
+    var scrollY = window.scrollY || window.pageYOffset || 0;
+    var heroBottom =
+      elements.heroSection.offsetTop + elements.heroSection.offsetHeight;
+    var windowHeight = window.innerHeight;
+    var documentHeight = document.documentElement.scrollHeight;
+    var footerTop = elements.footerSection
+      ? elements.footerSection.offsetTop
+      : documentHeight;
 
-    // Show after hero, hide near footer
-    const isPastHero = scrollY > heroBottom - 100;
-    const isNearFooter = scrollY + windowHeight > footerTop - 50;
+    var isPastHero = scrollY > heroBottom - 100;
+    var isNearFooter = scrollY + windowHeight > footerTop - 50;
 
     if (isPastHero && !isNearFooter) {
-      mobileCta.classList.add('is-visible');
+      elements.mobileCta.classList.add('is-visible');
     } else {
-      mobileCta.classList.remove('is-visible');
+      elements.mobileCta.classList.remove('is-visible');
     }
-  }
+  });
 
   // --- FAQ Accordion ---
-  function initFaqAccordion() {
-    faqButtons.forEach(function (button) {
-      button.addEventListener('click', function () {
-        const targetId = this.getAttribute('aria-controls');
-        const answer = document.getElementById(targetId);
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+  var initFaqAccordion = safeExecute(function () {
+    if (!elements || !elements.faqButtons || elements.faqButtons.length === 0)
+      return;
 
-        // Toggle current
-        this.setAttribute('aria-expanded', !isExpanded);
+    var faqButtonsArray = Array.prototype.slice.call(elements.faqButtons);
 
-        if (isExpanded) {
-          answer.hidden = true;
-        } else {
-          answer.hidden = false;
+    faqButtonsArray.forEach(function (button, index) {
+      button.addEventListener(
+        'click',
+        safeExecute(function () {
+          var targetId = button.getAttribute('aria-controls');
+          if (!targetId) return;
 
-          // GTM event
-          const questionText = this.querySelector('.faq__q-text');
-          if (questionText) {
-            pushGTMEvent('faq_open', {
-              faq_question: questionText.textContent.trim(),
-            });
+          var answer = document.getElementById(targetId);
+          if (!answer) return;
+
+          var isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+          button.setAttribute('aria-expanded', String(!isExpanded));
+
+          if (isExpanded) {
+            answer.hidden = true;
+          } else {
+            answer.hidden = false;
+
+            var questionText = button.querySelector('.faq__q-text');
+            if (questionText) {
+              pushGTMEvent('faq_open', {
+                faq_question: questionText.textContent.trim(),
+                faq_index: index + 1,
+              });
+            }
           }
-        }
-      });
+        })
+      );
 
-      // Keyboard support (Enter and Space already handled by button element)
+      button.addEventListener(
+        'keydown',
+        safeExecute(function (e) {
+          var key = e.key || e.keyCode;
+          var currentIndex = index;
+          var nextButton = null;
+
+          if (key === 'ArrowDown' || key === 40) {
+            e.preventDefault();
+            nextButton = faqButtonsArray[currentIndex + 1] || faqButtonsArray[0];
+          } else if (key === 'ArrowUp' || key === 38) {
+            e.preventDefault();
+            nextButton =
+              faqButtonsArray[currentIndex - 1] ||
+              faqButtonsArray[faqButtonsArray.length - 1];
+          } else if (key === 'Home' || key === 36) {
+            e.preventDefault();
+            nextButton = faqButtonsArray[0];
+          } else if (key === 'End' || key === 35) {
+            e.preventDefault();
+            nextButton = faqButtonsArray[faqButtonsArray.length - 1];
+          }
+
+          if (nextButton) {
+            nextButton.focus();
+          }
+        })
+      );
     });
-  }
+  });
 
   // --- Hamburger Menu ---
-  function initHamburgerMenu() {
-    if (!hamburgerBtn || !headerNav) return;
+  var initHamburgerMenu = safeExecute(function () {
+    if (!elements || !elements.hamburgerBtn || !elements.headerNav) return;
 
-    hamburgerBtn.addEventListener('click', function () {
-      const isActive = this.classList.contains('is-active');
+    var hamburgerBtn = elements.hamburgerBtn;
+    var headerNav = elements.headerNav;
+    var focusableElements = null;
+    var firstFocusable = null;
+    var lastFocusable = null;
 
-      this.classList.toggle('is-active');
-      headerNav.classList.toggle('is-open');
+    function updateFocusableElements() {
+      focusableElements = headerNav.querySelectorAll(
+        'a[href], button, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusableElements.length > 0) {
+        firstFocusable = focusableElements[0];
+        lastFocusable = focusableElements[focusableElements.length - 1];
+      }
+    }
 
-      // Update ARIA
-      this.setAttribute('aria-expanded', !isActive);
-      this.setAttribute('aria-label', isActive ? 'メニューを開く' : 'メニューを閉じる');
+    function openMenu() {
+      hamburgerBtn.classList.add('is-active');
+      headerNav.classList.add('is-open');
+      hamburgerBtn.setAttribute('aria-expanded', 'true');
+      hamburgerBtn.setAttribute('aria-label', 'メニューを閉じる');
+      document.body.style.overflow = 'hidden';
+      updateFocusableElements();
 
-      // Prevent body scroll when menu is open
-      document.body.style.overflow = isActive ? '' : 'hidden';
+      if (firstFocusable) {
+        setTimeout(function () {
+          firstFocusable.focus();
+        }, 100);
+      }
+    }
+
+    function closeMenu() {
+      hamburgerBtn.classList.remove('is-active');
+      headerNav.classList.remove('is-open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+      hamburgerBtn.setAttribute('aria-label', 'メニューを開く');
+      document.body.style.overflow = '';
+      hamburgerBtn.focus();
+    }
+
+    hamburgerBtn.addEventListener(
+      'click',
+      safeExecute(function () {
+        var isActive = hamburgerBtn.classList.contains('is-active');
+        if (isActive) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      })
+    );
+
+    document.addEventListener(
+      'keydown',
+      safeExecute(function (e) {
+        if (!headerNav.classList.contains('is-open')) return;
+
+        var key = e.key || e.keyCode;
+
+        if (key === 'Escape' || key === 27) {
+          closeMenu();
+          return;
+        }
+
+        if (key === 'Tab' || key === 9) {
+          if (!focusableElements || focusableElements.length === 0) return;
+
+          if (e.shiftKey) {
+            if (document.activeElement === firstFocusable) {
+              e.preventDefault();
+              lastFocusable.focus();
+            }
+          } else {
+            if (document.activeElement === lastFocusable) {
+              e.preventDefault();
+              firstFocusable.focus();
+            }
+          }
+        }
+      })
+    );
+
+    var navLinks = headerNav.querySelectorAll('.header__nav-link');
+    Array.prototype.slice.call(navLinks).forEach(function (link) {
+      link.addEventListener(
+        'click',
+        safeExecute(function () {
+          closeMenu();
+        })
+      );
     });
-
-    // Close menu when nav link is clicked
-    const navLinks = headerNav.querySelectorAll('.header__nav-link');
-    navLinks.forEach(function (link) {
-      link.addEventListener('click', function () {
-        hamburgerBtn.classList.remove('is-active');
-        headerNav.classList.remove('is-open');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
-        hamburgerBtn.setAttribute('aria-label', 'メニューを開く');
-        document.body.style.overflow = '';
-      });
-    });
-  }
+  });
 
   // --- Smooth Scroll ---
-  function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-      anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
+  var initSmoothScroll = safeExecute(function () {
+    var anchors = document.querySelectorAll('a[href^="#"]');
+    if (!anchors || anchors.length === 0) return;
 
-        const targetElement = document.querySelector(targetId);
-        if (!targetElement) return;
+    Array.prototype.slice.call(anchors).forEach(function (anchor) {
+      anchor.addEventListener(
+        'click',
+        safeExecute(function (e) {
+          var targetId = anchor.getAttribute('href');
+          if (!targetId || targetId === '#') return;
 
-        e.preventDefault();
+          var targetElement = null;
+          try {
+            targetElement = document.querySelector(targetId);
+          } catch (err) {
+            return;
+          }
 
-        const headerHeight = header ? header.offsetHeight : 0;
-        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
+          if (!targetElement) return;
 
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth',
-        });
-      });
+          e.preventDefault();
+
+          var headerHeight = elements && elements.header ? elements.header.offsetHeight : 0;
+          var targetPosition =
+            targetElement.getBoundingClientRect().top +
+            (window.scrollY || window.pageYOffset) -
+            headerHeight;
+
+          if (prefersReducedMotion()) {
+            window.scrollTo(0, targetPosition);
+          } else {
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth',
+            });
+          }
+
+          targetElement.setAttribute('tabindex', '-1');
+          targetElement.focus({ preventScroll: true });
+          targetElement.removeAttribute('tabindex');
+        })
+      );
     });
-  }
+  });
 
   // --- GTM CTA Click Tracking ---
-  function initCTATracking() {
-    document.querySelectorAll('[data-gtm]').forEach(function (element) {
-      element.addEventListener('click', function () {
-        const eventName = this.getAttribute('data-gtm');
-        pushGTMEvent('cta_click', {
-          cta_name: eventName,
-          cta_text: this.textContent.trim(),
-          cta_url: this.getAttribute('href') || '',
-        });
-      });
+  var initCTATracking = safeExecute(function () {
+    var ctaElements = document.querySelectorAll('[data-gtm]');
+    if (!ctaElements || ctaElements.length === 0) return;
+
+    Array.prototype.slice.call(ctaElements).forEach(function (element) {
+      element.addEventListener(
+        'click',
+        safeExecute(function () {
+          var eventName = element.getAttribute('data-gtm');
+          if (!eventName) return;
+
+          pushGTMEvent('cta_click', {
+            cta_name: eventName,
+            cta_text: element.textContent ? element.textContent.trim() : '',
+            cta_url: element.getAttribute('href') || '',
+          });
+        })
+      );
     });
-  }
+  });
 
   // --- Scroll Depth Tracking ---
-  function initScrollDepthTracking() {
+  var initScrollDepthTracking = safeExecute(function () {
     var depths = { 25: false, 50: false, 75: false, 100: false };
 
-    function checkScrollDepth() {
-      var scrollY = window.scrollY || window.pageYOffset;
-      var windowHeight = window.innerHeight;
-      var documentHeight = document.documentElement.scrollHeight;
-      var scrollPercentage = Math.round(((scrollY + windowHeight) / documentHeight) * 100);
+    var checkScrollDepth = safeExecute(function () {
+      var scrollY = window.scrollY || window.pageYOffset || 0;
+      var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      var documentHeight =
+        document.documentElement.scrollHeight || document.body.scrollHeight;
+
+      if (documentHeight <= windowHeight) return;
+
+      var scrollPercentage = Math.round(
+        ((scrollY + windowHeight) / documentHeight) * 100
+      );
 
       [25, 50, 75, 100].forEach(function (depth) {
         if (scrollPercentage >= depth && !depths[depth]) {
@@ -176,10 +370,14 @@
           });
         }
       });
-    }
+    });
 
-    window.addEventListener('scroll', throttle(checkScrollDepth, 200), { passive: true });
-  }
+    window.addEventListener(
+      'scroll',
+      throttle(checkScrollDepth, 200),
+      passiveOption
+    );
+  });
 
   // --- Throttle Utility ---
   function throttle(func, limit) {
@@ -203,43 +401,79 @@
     };
   }
 
+  // --- Debounce Utility ---
+  function debounce(func, wait) {
+    var timeout;
+    return function () {
+      var context = this;
+      var args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(function () {
+        func.apply(context, args);
+      }, wait);
+    };
+  }
+
   // --- Scroll Event Listener ---
-  function initScrollListeners() {
+  var initScrollListeners = safeExecute(function () {
     var onScroll = throttle(function () {
       handleStickyHeader();
       handleMobileCta();
     }, 100);
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', onScroll, passiveOption);
 
-    // Initial check
     handleStickyHeader();
     handleMobileCta();
-  }
+  });
 
   // --- Phone Tap Tracking ---
-  function initPhoneTapTracking() {
-    document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
-      link.addEventListener('click', function () {
-        pushGTMEvent('phone_tap', {
-          phone_number: this.getAttribute('href').replace('tel:', ''),
-        });
-      });
+  var initPhoneTapTracking = safeExecute(function () {
+    var phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+    if (!phoneLinks || phoneLinks.length === 0) return;
+
+    Array.prototype.slice.call(phoneLinks).forEach(function (link) {
+      link.addEventListener(
+        'click',
+        safeExecute(function () {
+          var phoneHref = link.getAttribute('href');
+          pushGTMEvent('phone_tap', {
+            phone_number: phoneHref ? phoneHref.replace('tel:', '') : '',
+          });
+        })
+      );
     });
-  }
+  });
+
+  // --- Resize Handler for Mobile CTA ---
+  var initResizeHandler = safeExecute(function () {
+    var onResize = debounce(function () {
+      handleMobileCta();
+    }, 250);
+
+    window.addEventListener('resize', onResize, passiveOption);
+  });
 
   // --- Initialize ---
   function init() {
-    initScrollListeners();
-    initFaqAccordion();
-    initHamburgerMenu();
-    initSmoothScroll();
-    initCTATracking();
-    initScrollDepthTracking();
-    initPhoneTapTracking();
+    try {
+      elements = getElements();
+
+      initScrollListeners();
+      initFaqAccordion();
+      initHamburgerMenu();
+      initSmoothScroll();
+      initCTATracking();
+      initScrollDepthTracking();
+      initPhoneTapTracking();
+      initResizeHandler();
+    } catch (error) {
+      if (typeof console !== 'undefined' && console.error) {
+        console.error('WECLE LP initialization error:', error);
+      }
+    }
   }
 
-  // Run when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
